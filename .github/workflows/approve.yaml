@@ -1,0 +1,34 @@
+name: approve-flow
+on:
+  push:
+    branches:
+      - main
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+     - run: echo job1
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    environment:
+      poc
+    steps:
+      - run: echo ${{ vars.NAME }}
+  job3:
+    needs: job2
+    runs-on: ubuntu-latest
+    steps:
+     - run: echo job3 
+  job4:
+    needs: job3
+    runs-on: ubuntu-latest
+    environment:
+      dev
+    steps:
+      - run: echo ${{ vars.NAME }}
+  job5:
+    needs: job4
+    runs-on: ubuntu-latest
+    steps:
+     - run: echo job5
