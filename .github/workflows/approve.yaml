@@ -32,3 +32,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - run: echo job5
+  job6:
+    needs: job4
+    runs-on: ubuntu-latest
+    steps:
+     - run: echo job6
+  job7:
+    needs:
+      - job5
+      - job6
+    strategy:
+      matrix:
+        version: [10, 12, 14]
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+     - run: echo job7. ${{ runner.os }}-${{ matrix.version }}
