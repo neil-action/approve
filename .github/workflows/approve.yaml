@@ -43,8 +43,8 @@ jobs:
       - job6
     strategy:
       matrix:
-        version: [10, 12, 14]
+        my_var: [10, 12, 14]
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
-     - run: echo job7. ${{ runner.os }}-${{ matrix.version }}
+     - run: echo job7. ${{ runner.os }}-${{ matrix.my_var }}
